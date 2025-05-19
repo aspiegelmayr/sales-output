@@ -8,25 +8,6 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 4000;
 
-employeeMock = [{
-    id: 1,
-    name: 'Anton',
-    availability: 1,
-    newOpps: 1,
-    currentChances: 3,
-    details: 'Some details',
-    projectStarts: 2,
-    newEntries: 1,
-    contracts: 2,
-    kvts: 3,
-    note: 'Some note',
-    weekOfTheYear: 1
-}]
-
-app.get('/api', (req, res) => {
-    res.json(employeeMock);
-});
-
 app.get('/api/outputs', (req, res) => {
   const week = req.query.week;
 
@@ -73,6 +54,53 @@ app.post('/api/outputs', (req, res) => {
       res.status(404).json({ error: `Output with id ${id} not found.` });
     }
   });
+
+
+  app.get('/api/people', (req, res) => {
+      const stmt = db.prepare('SELECT * FROM people');
+      people = stmt.all();
+    res.json(people);
+  });
+
+  app.post('/api/people', (req, res) => {
+    const persons = req.body; 
+  const results = [];
+
+  const stmt = db.prepare('INSERT INTO people (name, availability) VALUES (?, ?)');
+
+  const insertMany = db.transaction((people) => {
+    for (const person of people) {
+      const info = stmt.run(person.name, person.availability);
+      results.push({ id: info.lastInsertRowid, ...person });
+    }
+    });
+    insertMany(persons);
+
+  res.json(results);
+  });
+  
+  app.post('/api/people', (req, res) => {
+    const person = req.body; 
+    const stmt = db.prepare('INSERT INTO people (name, availability) VALUES (?, ?)');
+    const info = stmt.run(person);
+  
+    res.status(201).json({ id: info.lastInsertRowid, ...person });
+    });
+  
+    app.delete('/api/people/:id', (req, res) => {
+      const id = req.params.id;
+    
+      const stmt = db.prepare('DELETE FROM people WHERE id = ?');
+      const info = stmt.run(id);
+    
+      if (info.changes > 0) {
+        const selectStmt = db.prepare('SELECT * FROM people');
+        const updatedPeople = selectStmt.all();
+        res.status(200).json({ updatedPeople });
+      } else {
+        res.status(404).json({ error: `Entry with id ${id} not found.` });
+      }
+    });
 
 app.listen(PORT, () => {
     console.log(`Backend running on port ${PORT}`);

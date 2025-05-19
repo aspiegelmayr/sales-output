@@ -1,7 +1,8 @@
 const Database = require('better-sqlite3');
-const db = new Database('outputs.db');
+const outputDb = new Database('outputs.db');
+const peopleDb = new Database('outputs.db');
 
-db.prepare(`
+outputDb.prepare(`
   CREATE TABLE IF NOT EXISTS outputs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -18,4 +19,12 @@ db.prepare(`
   )
 `).run();
 
-module.exports = db;
+peopleDb.prepare(`
+  CREATE TABLE IF NOT EXISTS people (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    availability INT NOT NULL
+  )
+`).run();
+
+module.exports = outputDb, peopleDb;
