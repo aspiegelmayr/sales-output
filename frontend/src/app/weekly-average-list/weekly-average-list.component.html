@@ -1,0 +1,188 @@
+<h1>4-Wochen-Schnitt ({{forPerson.name}})</h1>
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>VMA</th>
+                <th>Opps</th>
+                <th>Chancen</th>
+                <th>Projektstarts</th>
+                <th>Neueintritte</th>
+                <th>Verträge</th>
+                <th>KVTs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Durchschnitt
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'newOpps', 4)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'currentChances', 4)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'projectStarts', 4)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'newEntries', 4)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'contracts', 4)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'kvts', 4)}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gesamt
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'newOpps', 4)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'currentChances', 4)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'projectStarts', 4)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'newEntries', 4)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'contracts', 4)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'kvts', 4)}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h1>8-Wochen-Schnitt ({{forPerson.name}})</h1>
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>VMA</th>
+                <th>Opps</th>
+                <th>Chancen</th>
+                <th>Projektstarts</th>
+                <th>Neueintritte</th>
+                <th>Verträge</th>
+                <th>KVTs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Durchschnitt
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'newOpps', 8)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'currentChances', 8)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'projectStarts', 8)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'newEntries', 8)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'contracts', 8)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'kvts', 8)}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gesamt
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'newOpps', 8)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'currentChances', 8)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'projectStarts', 8)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'newEntries', 8)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'contracts', 8)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'kvts', 8)}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h1>12-Wochen-Schnitt ({{forPerson.name}})</h1>
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>VMA</th>
+                <th>Opps</th>
+                <th>Chancen</th>
+                <th>Projektstarts</th>
+                <th>Neueintritte</th>
+                <th>Verträge</th>
+                <th>KVTs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Durchschnitt
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'newOpps', 12)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'currentChances', 12)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'projectStarts', 12)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'newEntries', 12)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'contracts', 12)}}
+                </td>
+                <td>
+                    {{this.getAverageForEmployee(forPerson.id || -1, 'kvts', 12)}}
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Gesamt
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'newOpps', 12)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'currentChances', 12)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'projectStarts', 12)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'newEntries', 12)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'contracts', 12)}}
+                </td>
+                <td>
+                    {{this.getTotalForEmployee(forPerson.id || -1, 'kvts', 12)}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

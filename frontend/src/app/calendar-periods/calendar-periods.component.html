@@ -1,0 +1,32 @@
+<h1>Kalenderwochen</h1>
+<a routerLink="/">Zur Tabelle</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Start</th>
+            <th>Ende</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of periods; let i = index">
+            <td>
+                <input [disabled]="editingIndex!==i" [(ngModel)]="p.name" />
+            </td>
+            <td>
+                <input type="number" [disabled]="editingIndex!==i" [(ngModel)]="p.startWeek" />
+            </td>
+            <td>
+                <input type="number" [disabled]="editingIndex!==i" [(ngModel)]="p.endWeek" />
+            </td>
+            <td>
+                <button (click)="editValues(i)">{{editingIndex === i ? 'Speichern' : 'Bearbeiten'}}</button>
+                <button (click)="deletePeriod(p.id)">Löschen</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button (click)="addNewPeriod()">Neue Periode anlegen</button>

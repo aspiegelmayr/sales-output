@@ -1,0 +1,11 @@
+.router-links-container {
+    display: flex;
+    gap: 10px;
+
+    a {
+        background-color: lightgray;
+        text-decoration: none;
+        padding: 5px;
+        border: 1px solid black;
+    }
+}

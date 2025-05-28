@@ -1,0 +1,28 @@
+<h1>Mitarbeiter</h1>
+<a routerLink="/">Zur Tabelle</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Verfügbarkeit</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of persons; let i = index">
+            <td>
+                <input [disabled]="editingIndex!==i" [(ngModel)]="p.name" />
+            </td>
+            <td>
+                <input type="number" [disabled]="editingIndex!==i" [(ngModel)]="p.availability" />
+            </td>
+            <td>
+                <button (click)="editValues(i)">{{editingIndex === i ? 'Speichern' : 'Bearbeiten'}}</button>
+                <button (click)="deletePerson(p.id)">Löschen</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button (click)="addNewPerson()">Neuen Mitarbeiter anlegen</button>

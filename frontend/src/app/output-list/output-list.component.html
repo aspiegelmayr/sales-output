@@ -1,0 +1,115 @@
+<span class="output-sales__title-area">
+    <span class="output-sales__title-area__section">
+    <button class="output-sales__title-area__section__button" (click)="setWeek(this.weekToDisplay-1)"><</button>
+    <h4>Kalenderwoche {{this.weekToDisplay}} ({{this.startDate}} - {{this.endDate}})</h4>
+    <button class="output-sales__title-area__section__button" (click)="setWeek(this.weekToDisplay+1)" [disabled]="this.rangeEnd !== 0 && this.weekToDisplay === this.rangeEnd">></button>
+    </span>
+</span>
+<div style="overflow-x: auto; display: flex">
+    <div>
+<table>
+    <thead>
+        <tr>
+            <th>VMA</th>
+            <th class="th-sm">neue Opps (qual)</th>
+            <th class="th-sm">aktuelle Chancen (>= 7.5)</th>
+            <th>im Detail (Kunde, BW, mögl. Start)</th>
+            <th class="th-sm">Projektstarts (10.0)</th>
+            <th class="th-sm">Neueintritte</th>
+            <th class="th-sm">Musterverträge (8.1)</th>
+            <th class="th-sm">KVTs</th>
+            <th class="th-sm">Projektstarts (10.0)</th>
+            <th class="th-sm">Neueintritte</th>
+            <th class="th-sm">Kommentar</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of people; let i = index">
+            <td *ngIf="p.id">
+                {{p.name}}
+            </td>
+            <ng-container *ngIf="getOutputForPerson(p.id) as output">
+            <td>
+      <input [ngClass]="getGoalClass('newOpps', i)" class="input-sm" type="number" [(ngModel)]="output.newOpps" />
+    </td>
+    <td *ngIf="p.id">
+                <input [ngClass]="getGoalClass('currentChances', i)" class="input-sm"  [(ngModel)]="output.currentChances" type="number" />
+            </td>
+    
+            <td *ngIf="p.id">
+                <textarea [(ngModel)]="output.details" rows="1" (input)="autoGrow($event)"></textarea>
+            </td>
+            <td *ngIf="p.id">
+                <input [ngClass]="getGoalClass('projectStarts', i)" class="input-sm" type="number"  [(ngModel)]="output.projectStarts" />
+            </td>
+            <td *ngIf="p.id">
+                <input [ngClass]="getGoalClass('newEntries', i)" class="input-sm" type="number" [(ngModel)]="output.newEntries"/>
+            </td>
+            <td *ngIf="p.id">
+                <input [ngClass]="getGoalClass('contracts', i)" class="input-sm" type="number"  [(ngModel)]="output.contracts"/>
+            </td>
+            <td *ngIf="p.id">
+                <input [ngClass]="getGoalClass('kvts', i)" class="input-sm" type="number"  [(ngModel)]="output.kvts"/>
+            </td>
+    <td>
+      {{showOutputForMonth('projectStarts', output.weekOfTheYear, p.id)}}
+    </td>
+    <td *ngIf="p.id">
+                {{showOutputForMonth('newEntries', output.weekOfTheYear, p.id)}}
+            </td>
+            <td *ngIf="p.id">
+                <textarea [(ngModel)]="output.note" rows="1" (input)="autoGrow($event)"></textarea>
+            </td>
+
+            <td [(ngModel)]="output.weekOfTheYear">
+                <button (click)="showAvg(p)">Durchschnitt zeigen</button>
+            </td>
+            </ng-container>
+            <ng-container *ngIf="!getOutputForPerson(p.id) as output">
+            <td><button (click)="addNewData(p)">Add Data</button></td>
+            </ng-container>
+        </tr>
+        <tr>
+            <td>Gesamt</td>
+            <td>
+                {{getTotalValues('newOpps')}}
+            <td>
+                {{getTotalValues('currentChances')}}
+            </td>
+            <td>--</td>
+            <td>
+                {{getTotalValues('projectStarts')}}
+            </td>
+            <td>
+                {{getTotalValues('newEntries')}}
+            </td>
+            <td>
+                {{getTotalValues('contracts')}}
+            </td>
+            <td>
+                {{getTotalValues('kvts')}}
+            </td>
+            <td>
+                {{getTotalValuesForMonth('projectStarts')}}
+            </td>
+            <td>
+                {{getTotalValuesForMonth('newEntries')}}
+            </td>
+            <td>
+                --
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<div>
+
+</div>
+</div>
+
+<button class="save-btn" (click)="saveAllOutputs()">Speichern</button>
+
+
+<app-weekly-average-list *ngIf="showAverageOf" [forPerson]="showAverageOf"></app-weekly-average-list>
